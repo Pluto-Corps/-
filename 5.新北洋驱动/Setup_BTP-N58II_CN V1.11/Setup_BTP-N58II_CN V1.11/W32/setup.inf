@@ -1,0 +1,104 @@
+
+
+; Sample combination printer INF for NT 2000 .
+; 
+
+[Version]
+Signature="$Windows NT$"
+Provider=%BY%
+LayoutFile=layout.inf
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+Class=Printer
+
+[ClassInstall]
+AddReg=ClassAddReg
+DelReg=ClassDelReg
+
+[ClassDelReg]
+HKLM,"System\CurrentControlSet\Services\Class\Printer","NoUseClass"
+
+[ClassAddReg]
+HKR,,,,%CLASSNAME%
+HKR,,Installer,,MSPRINT.DLL
+HKR,,Icon,,-4
+HKR,,NoDisplayClass,,1
+
+;
+; Manufacturer Sections
+;
+
+[Manufacturer]
+"BEIYANG"
+
+;
+; Model Sections 
+;
+
+
+[BEIYANG]
+"BTP-N58II(P)" = N58IIXP.GPD
+"BTP-N58II(S)" = N58IIXP.GPD
+"BTP-N58II(U)1" = N58IIXP.GPD, USBPRINT\"SNBC_BTP-N58II(U)1346E", "SNBC_BTP-N58II(U)1346E"
+"BTP-N58II(U)2" = N58IIXP.GPD, USBPRINT\"SNBC_BTP-N58II(U)2352E", "SNBC_BTP-N58II(U)2352E"
+"BTP-N58II(U)3" = N58IIXP.GPD, USBPRINT\"SNBC_BTP-N58II(U)3F5EF", "SNBC_BTP-N58II(U)3F5EF"
+"BTP-N58II(U)4" = N58IIXP.GPD, USBPRINT\"SNBC_BTP-N58II(U)437AE", "SNBC_BTP-N58II(U)437AE"
+"BTP-N58II(U)" = N58IIXP.GPD, USBPRINT\"SNBC___BTP-N58II(U)_2122", "SNBC___BTP-N58II(U)_2122"
+;
+; Installer Sections
+;
+; 
+
+[N58IIXP.GPD]
+CopyFiles=@N58IIXP.DLL,@N58IIXP.GPD
+CopyFiles=@N58IIUI.INI
+CopyFiles=N58IIUI
+DataSection=UNIDRV_DATA
+Include         = NTPRINT.INF
+Needs           = TTFSUB.OEM,UNIDRV_BIDI.OEM
+
+
+[N58IIUI]
+N58IIUI.DLL
+N58IIUNI.DLL
+
+; Copy Sections
+
+;
+; Data Sections
+;
+; These sections contain data that is shared between devices.
+;
+
+;
+; Call SetupSetDirectoryId with 66000 to set the target directory at runtime
+; (depending on which environment drivers are getting installed)
+;
+
+[DestinationDirs]
+DefaultDestDir=66000
+
+;
+; diskid = description,tagfile,unused,subdir
+;
+[SourceDisksNames]
+1 = %Floppy%,,,
+
+;
+; filename_on_source = diskid,subdir,size,checksum,spare,spare
+; extra fields are nt-specific
+;   bootmediaord,targetdirectory,upgradedisposition,textmodedisposition,targetname
+;
+[SourceDisksFiles]
+N58IIXP.DLL  = 1
+N58IIXP.GPD  = 1
+N58IIUNI.DLL = 1
+N58IIUI.DLL  = 1
+N58IIUI.INI  = 1
+
+;
+; Localizable Strings
+;
+[Strings]
+SNBC="Shandong NewBeiyang"
+Floppy="BY Printer Disk"
+CLASSNAME="Printer"

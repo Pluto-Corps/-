@@ -1,0 +1,112 @@
+; Sample combination printer INF for VISTA .
+; 
+
+[Version]
+Signature="$Windows NT$"
+Provider=%SNBC%
+LayoutFile=layout.inf
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+Class=Printer
+DriverVer=03/15/2014,1.0.0
+
+[ClassInstall]
+AddReg=ClassAddReg
+DelReg=ClassDelReg
+
+[ClassDelReg]
+HKLM,"System\CurrentControlSet\Services\Class\Printer","NoUseClass"
+
+[ClassAddReg]
+HKR,,,,%CLASSNAME%
+HKR,,Installer,,MSPRINT.DLL
+HKR,,Icon,,-4
+HKR,,NoDisplayClass,,1
+
+;
+; Manufacturer Sections
+;
+
+[Manufacturer]
+"SNBC"=SNBC, NTamd64
+
+;
+; Model Sections 
+;
+
+[SNBC.NTamd64]
+"Thermal Receipt Printer(U)1" = UPT80A.NTamd64, USBPRINT\"SNBC_Thermal_Receipt3B6E", "SNBC_Thermal_Receipt3B6E"
+"Thermal Receipt Printer(U)2" = UPT80A.NTamd64, USBPRINT\"SNBC_Thermal_Receipt3A2E", "SNBC_Thermal_Receipt3A2E"
+"Thermal Receipt Printer(U)3" = UPT80A.NTamd64, USBPRINT\"SNBC_Thermal_ReceiptFAEF", "SNBC_Thermal_ReceiptFAEF"
+"Thermal Receipt Printer(U)4" = UPT80A.NTamd64, USBPRINT\"SNBC_Thermal_Receipt38AE", "SNBC_Thermal_Receipt38AE"
+
+
+"Thermal Receipt Printer(P)"   = UPT80A.NTamd64"
+"Thermal Receipt Printer(S)"   = UPT80AS.NTamd64"
+
+
+;
+; Model Sections 
+;
+
+[UPT80A.NTamd64]
+DriverVer=03/15/2014,1.0.0
+CopyFiles=@UPT80A.dll,@UPT80A.GPD,@UPT80AUI.INI
+CopyFiles=UPT80AUI,CONTROLFONT
+CopyFiles=LANGUAGEINI
+DataFile=UPT80A.GPD
+DataSection=UNIDRV_DATA
+Include=NTPRINT.INF
+Needs=UNIDRV.OEM,TTFSUB.OEM,UNIDRV_DATA
+
+[UPT80AS.NTamd64]
+DriverVer=03/15/2014,1.0.0
+CopyFiles=@UPT80AS.dll,@UPT80AS.GPD,@UPT80AUI.INI
+CopyFiles=UPT80AUI,CONTROLFONT
+CopyFiles=LANGUAGEINI
+DataFile=UPT80AS.GPD
+DataSection=UNIDRV_DATA
+Include=NTPRINT.INF
+Needs=UNIDRV.OEM,TTFSUB.OEM,UNIDRV_DATA
+
+
+; Copy Sections
+
+[UPT80AUI]
+UPT80AUNI.DLL
+UPT80AUI.DLL
+
+[CONTROLFONT]
+UPT80ACONTROL.dat
+
+[LANGUAGEINI]
+LANGUAGE_UPT80A.dat
+CHF_UPT80A.res
+CHN_UPT80A.res
+ENG_UPT80A.res
+
+[DestinationDirs]
+DefaultDestDir=66000
+
+
+[SourceDisksNames]
+1 = %Floppy%
+
+[SourceDisksFiles]
+UPT80A.dll     = 1
+UPT80A.GPD     = 1
+UPT80AS.dll    = 1
+UPT80AS.GPD    = 1
+UPT80AUNI.DLL  = 1
+UPT80AUI.DLL   = 1
+UPT80ACONTROL.dat   = 1
+LANGUAGE_UPT80A.dat = 1
+CHF_UPT80A.res = 1
+CHN_UPT80A.res = 1
+ENG_UPT80A.res = 1
+;ldaNLM64.dll  = 1
+
+
+[Strings]
+UPRINT="Shandong New Beiyang Information Technology Co., Ltd"
+Floppy="BY Printer Disk"
+CLASSNAME="Printer"

@@ -1,0 +1,112 @@
+;
+;  Aibao.INF
+;
+; 
+;
+; Copyright (C) 2001
+;
+
+
+[Version]
+Signature="$Windows NT$"
+Provider=%AUTHOR%
+LayoutFile=ntprint.inf
+ClassGUID={4D36E979-E325-11CE-BFC1-08002BE10318}
+Class=Printer
+DriverVer=08/09/2010
+CatalogFile=AibaoPrinterDrive_cn.cat
+
+
+[Manufacturer]
+"Heshuo"=Heshuo, NTx86, NTamd64, NTia64
+
+[Heshuo]
+"Aibao A-80USH"      = DRIVER_POS80
+"Aibao A-5801"      = DRIVER_POS58
+
+[Heshuo.NTx86]
+"Aibao A-80USH"      = DRIVER_POS80
+"Aibao A-5801"      = DRIVER_POS58
+
+[Heshuo.NTamd64]
+"Aibao A-80USH"      = DRIVER_POS80
+"Aibao A-5801"      = DRIVER_POS58
+
+[Heshuo.NTia64]
+"Aibao A-80USH"      = DRIVER_POS80
+"Aibao A-5801"      = DRIVER_POS58
+
+[DRIVER_POS80]
+CopyFiles=@A-80USH.ini
+CopyFiles=@A-80USH.GPD
+CopyFiles=POS80FILES
+DataSection=UNIDRV_DATA
+DataFile=A-80USH.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV.OEM
+;Addreg = port_AddReg
+
+[DRIVER_POS58]
+CopyFiles=@A-5801.ini
+CopyFiles=@A-5801.GPD
+CopyFiles=POS58FILES
+DataSection=UNIDRV_DATA
+DataFile=A-5801.GPD
+Include=NTPRINT.INF
+Needs=UNIDRV.OEM
+;Addreg = port_AddReg
+
+;[DefaultInstall.NT]
+;[ClassInstall32.ntx86]
+;[ClassInstall32]
+
+;[port_AddReg]
+;HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports","COM1:",0x00000000,%COMMCONFIG%
+;HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports","COM2:",0x00000000,%COMMCONFIG%
+;HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports","COM3:",0x00000000,%COMMCONFIG%
+;HKLM,"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports","COM4:",0x00000000,%COMMCONFIG%
+
+[POS80FILES]
+pos80d.dll
+RES80.DLL
+
+
+[POS58FILES]
+newpos58d.dll
+newpos58f.dll
+NEWRES58.DLL
+
+[SourceDisksNames]
+100 = %disk1%
+
+[SourceDisksFiles.x86]
+pos80d.dll = 100,i386
+RES80.DLL =  100,i386
+newpos58d.dll = 100,i386
+newpos58f.dll = 100,i386
+NEWRES58.DLL = 100,i386
+
+[SourceDisksFiles.amd64]
+pos80d.dll = 100,x64
+RES80.DLL =  100,x64
+newpos58d.dll = 100,x64
+newpos58f.dll = 100,x64
+NEWRES58.DLL = 100,x64
+
+[SourceDisksFiles.ia64]
+pos80d.dll   = 100,ia64
+RES80.DLL =  100,ia64
+newpos58d.dll = 100,ia64
+newpos58f.dll = 100,ia64
+NEWRES58.DLL = 100,ia64
+
+[DestinationDirs]
+DefaultDestDir=66000
+
+;[ControlFlags]
+;ExcludeFromSelect = 2369
+
+[Strings]
+AUTHOR="Microsoft"
+COMMCONFIG="9600,n,8,1,p"
+disk1="Aibao Print DRIVER"
